@@ -1,0 +1,20 @@
+name: Lint Svelte
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./svelte
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: npm i
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run check
